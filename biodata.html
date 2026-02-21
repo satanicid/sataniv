@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIODATA // CYBERPUNK 2077</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Font Google untuk tambahan sci-fi -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000000;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Rajdhani', 'Orbitron', 'Courier New', monospace;
+            padding: 1rem;
+            position: relative;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* ========== BACKGROUND SUPER DINAMIS ========== */
+        body::before {
+            content: '';
+            position: fixed;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(0deg, 
+                rgba(255, 0, 0, 0.02) 0px, 
+                rgba(255, 0, 0, 0.02) 4px, 
+                transparent 4px, 
+                transparent 20px),
+                repeating-linear-gradient(90deg, 
+                rgba(255, 0, 0, 0.03) 0px, 
+                rgba(255, 0, 0, 0.03) 2px, 
+                transparent 2px, 
+                transparent 30px),
+                radial-gradient(circle at 30% 50%, #ff000020 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, #ff444430 0%, transparent 50%);
+            animation: scanMove 16s linear infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        @keyframes scanMove {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-5%, -5%) rotate(1deg); }
+        }
+
+        /* glitch overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: repeating-linear-gradient(0deg, rgba(0,0,0,0.8) 0px, rgba(255,0,0,0.02) 2px, transparent 3px, rgba(0,0,0,0.9) 8px);
+            pointer-events: none;
+            z-index: 1;
+            mix-blend-mode: multiply;
+            opacity: 0.3;
+            animation: flicker 0.3s infinite;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 0.3; }
+            50% { opacity: 0.35; }
+            100% { opacity: 0.3; }
+        }
+
+        /* ========== CARD UTAMA ========== */
+        .card {
+            max-width: 1300px;
+            width: 100%;
+            background: #010101f5;
+            backdrop-filter: blur(12px);
+            border: 3px solid #ff0000;
+            box-shadow: 0 0 70px #ff0000, 0 0 0 4px #ffffff20 inset, 0 0 0 2px #ff0000, 30px 30px 0 #2f0000;
+            padding: 3rem 3rem;
+            position: relative;
+            z-index: 20;
+            transition: 0.2s;
+            border-radius: 70px 20px 70px 20px;
+            animation: borderPulse 3s infinite alternate;
+        }
+
+        @keyframes borderPulse {
+            0% { border-color: #ff0000; box-shadow: 0 0 50px #ff0000, 0 0 0 4px #ffffff30 inset, 30px 30px 0 #2f0000; }
+            50% { border-color: #ff6666; box-shadow: 0 0 100px #ff6666, 0 0 0 6px #ff0000 inset, 35px 35px 0 #4f0000; }
+            100% { border-color: #ff1100; box-shadow: 0 0 80px #ff2222, 0 0 0 4px #ffaaaa inset, 25px 25px 0 #1f0000; }
+        }
+
+        .card:hover {
+            transform: scale(1.02) rotate(-0.5deg);
+            box-shadow: 0 0 120px #ff3333, 0 0 0 6px #ff0000 inset, 40px 40px 0 #5f0000;
+        }
+
+        /* ========== LAYOUT GRID FUTURISTIK ========== */
+        .biodata-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        /* ========== KIRI : MAXIMUM CYBER ========== */
+        .profile-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        /* hologram photo */
+        .foto-holo {
+            width: 280px;
+            height: 280px;
+            object-fit: cover;
+            border: 6px solid transparent;
+            background: linear-gradient(45deg, #ff0000, #aa0000, #ff5500) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            filter: grayscale(1) contrast(1.8) brightness(0.8);
+            box-shadow: 0 0 0 6px black, 0 0 0 12px #ff0000, 40px 40px 0 #2a0000, 0 0 80px #ff0000;
+            transition: 0.3s;
+            animation: glitchPhoto 4s infinite;
+        }
+
+        @keyframes glitchPhoto {
+            0% { transform: skew(0deg, 0deg) scale(1); opacity: 1; filter: grayscale(1) contrast(1.8); }
+            2% { transform: skew(3deg, -2deg) scale(1.02); filter: grayscale(0.5) contrast(2) hue-rotate(10deg); }
+            4% { transform: skew(-2deg, 1deg) scale(0.98); filter: grayscale(1) contrast(1.8) hue-rotate(-10deg); }
+            6% { transform: skew(0deg, 0deg) scale(1); filter: grayscale(1) contrast(1.8); }
+            100% { transform: skew(0deg, 0deg); }
+        }
+
+        .foto-holo:hover {
+            filter: grayscale(0) contrast(1.4);
+            box-shadow: 0 0 0 6px black, 0 0 0 12px #ff8888, 30px 30px 0 #4f0000, 0 0 150px #ff6666;
+            animation: none;
+        }
+
+        /* BADGE PROGRAMMER DENGAN NEON */
+        .cyber-badge {
+            margin: 2.5rem 0 2rem;
+            background: #000;
+            color: #ff0000;
+            font-weight: 900;
+            font-size: 2.2rem;
+            padding: 1rem 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            border: 4px solid #ff0000;
+            box-shadow: 0 0 30px #ff0000, 0 0 0 3px white inset, 15px 15px 0 #3f0000;
+            transform: rotate(-2deg) skew(-5deg);
+            font-family: 'Orbitron', monospace;
+            text-shadow: 0 0 10px red, 0 0 30px red;
+            white-space: nowrap;
+        }
+
+        .cyber-badge i {
+            margin-right: 15px;
+            color: white;
+            background: red;
+            padding: 8px 12px;
+            font-size: 2.5rem;
+            transform: skew(5deg);
+            box-shadow: 0 0 20px white;
+        }
+
+        /* SOCIAL ICONS — CYBER */
+        .cyber-icons {
+            display: flex;
+            gap: 2.8rem;
+            margin: 2rem 0 1.8rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .cyber-icons a {
+            color: #ff0000;
+            background: #0f0000;
+            font-size: 3.8rem;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid #ff0000;
+            box-shadow: 12px 12px 0 #3f0000, 0 0 60px #ff0000, 0 0 0 2px white inset;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            transition: 0.2s;
+            text-decoration: none;
+            position: relative;
+            animation: iconShape 6s infinite alternate;
+        }
+
+        @keyframes iconShape {
+            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            50% { border-radius: 60% 40% 40% 60% / 60% 60% 40% 40%; }
+            100% { border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%; }
+        }
+
+        .cyber-icons a:hover {
+            background: #ff0000;
+            color: black;
+            border-color: white;
+            box-shadow: 0 0 100px red, 5px 5px 0 white, 0 0 0 4px black inset;
+            transform: scale(1.1) rotate(5deg);
+            animation: none;
+        }
+
+        /* ========== KANAN : INFO FUTURISTIK ========== */
+        .info-section {
+            color: #fff;
+        }
+
+        /* NAMA DENGAN GLITCH EFEK */
+        .glitch-name {
+            font-size: 5.5rem;
+            font-weight: 900;
+            line-height: 0.9;
+            text-transform: uppercase;
+            font-family: 'Orbitron', sans-serif;
+            color: white;
+            text-shadow: 8px 8px 0 #ff0000, 16px 16px 0 #000, 0 0 50px red;
+            letter-spacing: -3px;
+            margin-bottom: 0.5rem;
+            position: relative;
+            animation: glitchText 1.8s infinite;
+        }
+
+        @keyframes glitchText {
+            0% { text-shadow: 8px 8px 0 #ff0000, 16px 16px 0 #000, 0 0 50px red; }
+            5% { text-shadow: 6px 10px 0 #ff0000, 14px 14px 0 #00ff00, 0 0 50px red; }
+            10% { text-shadow: 10px 6px 0 #ff0000, 18px 18px 0 #0000ff, 0 0 50px red; }
+            15% { text-shadow: 8px 8px 0 #ff0000, 16px 16px 0 #000, 0 0 50px red; }
+            100% { text-shadow: 8px 8px 0 #ff0000, 16px 16px 0 #000, 0 0 50px red; }
+        }
+
+        .title-cyber {
+            font-size: 2rem;
+            font-weight: 600;
+            background: linear-gradient(90deg, #ff0000, #ff884d);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            border-left: 15px solid #ff0000;
+            padding-left: 1.8rem;
+            margin: 1.5rem 0 2rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            filter: drop-shadow(0 0 20px red);
+        }
+
+        /* INFO GRID SUPER */
+        .grid-cyber {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            background: #030000e8;
+            border: 4px solid #ff0000;
+            padding: 2.5rem;
+            margin: 2.5rem 0;
+            box-shadow: 20px 20px 0 #2f0000, 0 0 60px #ff0000 inset, 0 0 0 2px #ff0000;
+            backdrop-filter: blur(15px);
+            border-radius: 20px 60px 20px 60px;
+        }
+
+        .cyber-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            border-bottom: 3px dashed #ff0000;
+            padding-bottom: 1rem;
+        }
+
+        .cyber-item i {
+            width: 70px;
+            height: 70px;
+            background: #1a0000;
+            border: 4px solid #ff0000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+            color: #ff0000;
+            box-shadow: 8px 8px 0 black, 0 0 30px red;
+            border-radius: 20px 0 20px 0;
+            transition: 0.2s;
+        }
+
+        .cyber-item:hover i {
+            background: #ff0000;
+            color: black;
+            box-shadow: 0 0 60px white;
+        }
+
+        .cyber-item .label {
+            font-size: 0.9rem;
+            opacity: 0.6;
+            letter-spacing: 3px;
+            color: #ffaaaa;
+            font-weight: 600;
+        }
+
+        .cyber-item .value {
+            font-weight: 900;
+            font-size: 1.6rem;
+            color: white;
+            text-shadow: 0 0 15px red;
+            font-family: 'Orbitron', monospace;
+        }
+
+        /* QUOTE AREA */
+        .cyber-quote {
+            background: #080000;
+            border: 6px double #ff0000;
+            padding: 2rem 2.5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+            box-shadow: 25px 25px 0 #2f0000, 0 0 70px #ff0000 inset;
+            text-transform: uppercase;
+            margin: 2.5rem 0;
+            color: #ffdddd;
+            letter-spacing: 3px;
+            text-align: center;
+            border-radius: 60px 0 60px 0;
+            font-family: 'Orbitron', sans-serif;
+            word-break: break-word;
+        }
+
+        .cyber-quote i {
+            color: #ff0000;
+            font-size: 3.8rem;
+            margin: 0 1rem;
+            filter: drop-shadow(0 0 30px red);
+            vertical-align: middle;
+        }
+
+        /* BUTTONS SUPER NOVA */
+        .action-cyber {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2.8rem 0 1.8rem;
+        }
+
+        .btn-nova {
+            padding: 1.5rem 3rem;
+            font-weight: 900;
+            font-size: 1.8rem;
+            border: 5px solid #ff0000;
+            background: black;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 15px 15px 0 #3f0000, 0 0 80px #ff0000;
+            text-decoration: none;
+            transition: 0.15s;
+            border-radius: 0 50px 0 50px;
+            font-family: 'Orbitron', monospace;
+            transform: rotate(0deg);
+        }
+
+        .btn-nova i {
+            font-size: 3rem;
+            color: #ff0000;
+            filter: drop-shadow(0 0 20px red);
+            transition: 0.15s;
+        }
+
+        .btn-nova:hover {
+            background: #ff0000;
+            color: black;
+            border-color: white;
+            box-shadow: 5px 5px 0 white, 0 0 120px red, 0 0 0 4px black inset;
+            transform: translateY(-10px) scale(1.08) rotate(-1deg);
+        }
+
+        .btn-nova:hover i {
+            color: black;
+            filter: drop-shadow(0 0 30px white);
+        }
+
+        /* FOOTER GLITCH */
+        .footer-cyber {
+            display: flex;
+            justify-content: space-between;
+            border-top: 6px double #ff0000;
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            color: #ffaaaa;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 1.2rem;
+            font-family: 'Orbitron', monospace;
+        }
+
+        .footer-cyber i {
+            color: #ff0000;
+            margin-right: 0.8rem;
+            font-size: 1.8rem;
+            filter: drop-shadow(0 0 15px red);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1000px) {
+            .biodata-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .glitch-name {
+                font-size: 4rem;
+            }
+            .cyber-icons a {
+                width: 100px;
+                height: 100px;
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                padding: 1.8rem;
+            }
+            .grid-cyber {
+                grid-template-columns: 1fr;
+            }
+            .cyber-badge {
+                font-size: 1.5rem;
+                letter-spacing: 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="biodata-wrapper">
+            <!-- ========== KIRI : HOLO & ICON ========== -->
+            <div class="profile-section">
+                <!-- FOTO DENGAN HOLO GLITCH -->
+                <img 
+<img class="foto-holo" 
+     src="https://files.catbox.moe/okcxr1.png" 
+     alt="cyber profile">
+                >
+                
+                <!-- BADGE I AM PROGRAMMER DEVELOPER V2 -->
+                <div class="cyber-badge">
+                    <i class="fas fa-microchip"></i> Satanic Haxor 
+                </div>
+
+                <!-- SOCIAL ICONS (WA, GITHUB, IG) + BONUS TERMINAL -->
+                <div class="cyber-icons">
+                    <a href="#" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank" title="Terminal"><i class="fas fa-terminal"></i></a>
+                </div>
+
+                <!-- LOCATION TAG -->
+                <div style="border: 4px solid #ff0000; padding: 0.8rem 2.5rem; background: #0c0000; box-shadow: 15px 15px 0 black; color: #ffaaaa; font-size: 1.4rem; letter-spacing: 3px; border-radius: 40px 0 40px 0;">
+                    <i class="fas fa-map-pin" style="color:#ff0000; margin-right: 12px;"></i> Lampung
+                </div>
+            </div>
+
+            <!-- ========== KANAN : DATA CYBER ========== -->
+            <div class="info-section">
+                <!-- NAMA DENGAN GLITCH PARAH -->
+                <h1 class="glitch-name">SATANIC<br>HAXOR</h1>
+                <div class="title-cyber">
+                    <i class="fas fa-skull" style="margin-right: 20px;"></i> FULLSTACK · PYTHON, NODEJS, WEB SCRAPING, AI, JAVASCRIPT
+                </div>
+
+                <!-- GRID INFORMASI FUTURISTIK -->
+                <div class="grid-cyber">
+                    <div class="cyber-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <div>
+                            <div class="label">BORN</div>
+                            <div class="value">07.07.2000</div>
+                        </div>
+                    </div>
+                    <div class="cyber-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <div class="label">CALL</div>
+                            <div class="value">+62 831-6875-8640</div>
+                        </div>
+                    </div>
+                    <div class="cyber-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <div class="label">E-MAIL</div>
+                            <div class="value">satanichaxor@cyber.id</div>
+                        </div>
+                    </div>
+                    <div class="cyber-item">
+                        <i class="fas fa-location-dot"></i>
+                        <div>
+                            <div class="label">BASE</div>
+                            <div class="value">LAMPUNG · ID</div>
+                        </div>
+                    </div>
+                    <div class="cyber-item">
+                        <i class="fas fa-crown"></i>
+                        <div>
+                            <div class="label">EXP.</div>
+                            <div class="value">8+ YEARS</div>
+                        </div>
+                    </div>
+                    <div class="cyber-item">
+                        <i class="fas fa-cube"></i>
+                        <div>
+                            <div class="label">STACK</div>
+                            <div class="value">RUST · PYTHON · NODEJS • SQL</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- QUOTE EKSTRIM -->
+                <div class="cyber-quote">
+                    <i class="fas fa-bolt"></i>   LIGHTNING· PARADISE · GHOST  <i class="fas fa-bolt"></i>
+                </div>
+
+                <!-- BUTTON DENGAN LOGO (WA, GITHUB, IG, DAN SATU LAGI) -->
+                <div class="action-cyber">
+                    <a href="#" class="btn-nova" target="_blank"><i class="fab fa-whatsapp"></i> 0831-6875-8640</a>
+                    <a href="#" class="btn-nova" target="_blank"><i class="fab fa-github"></i> SATANICID</a>
+                    <a href="#" class="btn-nova" target="_blank"><i class="fab fa-instagram"></i> STNIC1_</a>
+                    <a href="#" class="btn-nova"><i class="fas fa-dragon"></i> LPG</a>
+                </div>
+
+         <!-- FOOTER CYBER -->
+                <div class="footer-cyber">
+                    <span><i class="fas fa-shield-halved"></i> SATANIC HAXOR V.4</span>
+                    <span><i class="fas fa-code"></i> // 2025 //</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ganti foto dengan file lokal jika diperlukan, semua sudah sangat keren -->
+</body>
+</html>
